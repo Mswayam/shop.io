@@ -30,15 +30,37 @@
   <!-- Navigation Bar -->
   <nav class="flex items-center justify-between p-4 shadow-lg bg-gradient-to-r from-pink-400 via-yellow-300 to-blue-400 sticky top-0 z-40">
     <div class="flex items-center space-x-2">
-      <img src="assets/LOGO.jpg" alt="BOSS Logo" class="h-10 w-10 object-contain"> <!-- Add your logo image here -->
+      <img src="assets/LOGO.jpg" alt="BOSS Logo" class="h-10 w-10 object-contain">
       <span class="text-xl font-bold">  BOSS BABY </span>
     </div>
-    <div class="space-x-4 hidden md:flex">
-      <a href="/index.html" class="hover:text-blue-500">Home</a>
-      <a href="#products" class="hover:text-blue-500">Products</a>
-      <button onclick="toggleCart()" class="hover:text-blue-500">Cart 🛒 (<span id="cart-count">0</span>)</button>
+    <!-- Hamburger Button (Mobile) -->
+    <button id="nav-toggle" class="md:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none" aria-label="Open Menu">
+      <span class="block w-6 h-0.5 bg-gray-800 mb-1 transition-all"></span>
+      <span class="block w-6 h-0.5 bg-gray-800 mb-1 transition-all"></span>
+      <span class="block w-6 h-0.5 bg-gray-800 transition-all"></span>
+    </button>
+    <!-- Nav Links -->
+    <div id="nav-menu" class="space-y-4 md:space-x-4 md:space-y-0 md:flex hidden md:items-center absolute md:static top-16 left-0 w-full md:w-auto bg-gradient-to-r from-pink-400 via-yellow-300 to-blue-400 md:bg-none p-4 md:p-0 z-50">
+      <a href="/index.html" class="block md:inline hover:text-blue-500">Home</a>
+      <a href="#products" class="block md:inline hover:text-blue-500">Products</a>
+      <button onclick="toggleCart()" class="block md:inline hover:text-blue-500">Cart 🛒 (<span id="cart-count">0</span>)</button>
     </div>
   </nav>
+
+  <script>
+    // Hamburger menu toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
+    });
+    // Optional: Close menu on link click (mobile)
+    document.querySelectorAll('#nav-menu a, #nav-menu button').forEach(el => {
+      el.addEventListener('click', () => {
+        if(window.innerWidth < 768) navMenu.classList.add('hidden');
+      });
+    });
+  </script>
 
   <!-- Hero Section -->
   <header class="bg-gradient-to-r from-blue-100 via-pink-100 to-yellow-100 py-20 text-center flex flex-col items-center justify-center relative overflow-hidden">
