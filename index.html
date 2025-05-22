@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shop trendy T-shirts online. Affordable fashion with secure checkout." />
+  <title> BOSS BABY | Shop</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer src="script.js"></script>
+  <link rel="icon" href="favicon.ico">
+  <style>
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(-30px) scale(0.8); }
+      50% { opacity: 1; transform: translateY(0) scale(1.05); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .animate-fade-slide {
+      animation: fadeSlide 1.5s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-pink-100 via-yellow-100 to-blue-100 text-gray-900 transition-colors duration-300">
+  <!-- Cookie Consent -->
+  <div id="cookieConsent" class="fixed bottom-0 bg-gray-900 text-white w-full p-4 text-center z-50 hidden">
+    This site uses cookies for personalization and analytics. <button onclick="acceptCookies()" class="ml-4 bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded">Accept</button>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="flex items-center justify-between p-4 shadow-lg bg-gradient-to-r from-pink-400 via-yellow-300 to-blue-400 sticky top-0 z-40">
+    <div class="flex items-center space-x-2">
+      <img src="assets/LOGO.jpg" alt="BOSS Logo" class="h-10 w-10 object-contain"> <!-- Add your logo image here -->
+      <span class="text-xl font-bold">  BOSS BABY </span>
+    </div>
+    <div class="space-x-4 hidden md:flex">
+      <a href="/index.html" class="hover:text-blue-500">Home</a>
+      <a href="#products" class="hover:text-blue-500">Products</a>
+      <button onclick="toggleCart()" class="hover:text-blue-500">Cart 🛒 (<span id="cart-count">0</span>)</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="bg-gradient-to-r from-blue-100 via-pink-100 to-yellow-100 py-20 text-center flex flex-col items-center justify-center relative overflow-hidden">
+    <div class="flex flex-wrap justify-center items-center gap-6 mb-6 animate-fade-slide">
+      <img src="assets/OIP.jpg" alt="T-shirt 1" class="h-24 w-24 object-cover rounded-full shadow-lg border-4 border-white transform hover:scale-110 transition duration-300">
+      <img src="assets/OIP (1).jpg" alt="T-shirt 2" class="h-24 w-24 object-cover rounded-full shadow-lg border-4 border-white transform hover:scale-110 transition duration-300">
+      <img src="assets/FINAL LOGO.jpg" alt="BOSS BABY Logo" class="h-28 w-28 object-contain rounded-full shadow-2xl border-4 border-blue-300 bg-white z-10 animate-fade-slide">
+      <img src="assets/OIP (2).jpg" alt="T-shirt 3" class="h-24 w-24 object-cover rounded-full shadow-lg border-4 border-white transform hover:scale-110 transition duration-300">
+      <img src="assets/OIP (3).jpg" alt="T-shirt 4" class="h-24 w-24 object-cover rounded-full shadow-lg border-4 border-white transform hover:scale-110 transition duration-300">
+    </div>
+    <h1 class="text-5xl font-extrabold mb-2 text-blue-700 drop-shadow-lg tracking-wide animate-fade-slide"> BOSS BABY </h1>
+    <p class="text-xl text-gray-700 font-medium animate-fade-slide">Affordable, stylish, and comfortable T-shirts and products for Babies</p>
+  </header>
+
+  <!-- Products -->
+  <main class="p-4" id="products">
+    <h2 class="text-2xl font-bold mb-4">Baby T-Shirt</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Product Card Example -->
+      <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP.jpg" alt="Classic White Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">Classic red </h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Classic White Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+      <!-- New Product 1 -->
+      <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (1).jpg" alt="Classic Black Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">Classic grey </h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Classic Black Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+      <!-- New Product 2 -->
+      <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (2).jpg" alt="Graphic Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic dark blue</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Graphic Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+      <!-- New Product 3 -->
+      <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (3).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic pitch</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+      <!-- ...add more products as needed... -->
+         <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (4).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic red</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+        <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (5).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic blue</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+        <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (6).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic lemon</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+        <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (7).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic green</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+        <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (8).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic neon blue</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+        <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (9).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic rev up</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+        <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (10).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic black</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+        <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/OIP (11).jpg" alt="Striped Tee" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">classic sky blue</h3>
+        <p class="text-gray-600">₹799</p>
+        <button onclick="addToCart('Striped Tee', 799)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Other Products Section -->
+  <section class="p-4 mt-12 other-products">
+    <h2 class="text-2xl font-bold mb-4">Baby Care Product</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Example Other Product Card -->
+      <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/p1.jpg" alt="Cool Cap" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">SEBAMED BABY GENTLE Wash 50ml</h3>
+        <p class="text-gray-600">₹999</p>
+        <button onclick="addToCart('Cool Cap', 999)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+      <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/p2.jpg" alt="Baby Socks" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">SEBAMED BABY GENTLE Wash 400ml</h3>
+        <p class="text-gray-600">₹599</p>
+        <button onclick="addToCart('Baby Socks', 599)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+       <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/p3.jpg" alt="Baby Socks" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">SEBAMED BABY GENTLE Wash 200ml</h3>
+        <p class="text-gray-600">₹399</p>
+        <button onclick="addToCart('Baby Socks', 399)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+       <div class="border p-4 rounded-lg shadow hover:shadow-xl transition">
+        <img src="assets/p4.jpg" alt="Baby Socks" class="w-full h-48 object-cover rounded">
+        <h3 class="mt-2 font-semibold">SEBAMED BABY FACE & BODY WASH Foam 400ml</h3>
+        <p class="text-gray-600">₹499</p>
+        <button onclick="addToCart('Baby Socks', 499)" class="mt-2 bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Add to Cart</button>
+      </div>
+      <!-- Add more other products as needed -->
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="p-4 mt-12 bg-blue-50 rounded-lg max-w-2xl mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-center">Contact Us</h2>
+    <p class="mb-2 text-center">Have questions or need help? Reach out to us!</p>
+    <form class="flex flex-col gap-3 max-w-md mx-auto" action="https://formsubmit.co/223swayam2011@sjcem.edu.in" method="POST">
+      <input type="text" name="name" placeholder="Your Name" class="border rounded p-2" required>
+      <input type="email" name="email" placeholder="Your Email" class="border rounded p-2" required>
+      <textarea name="message" placeholder="Your Message" class="border rounded p-2" rows="4" required></textarea>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Send</button>
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+    </form>
+  </section>
+
+  <!-- Cart Section -->
+  <aside id="cart" class="fixed right-0 top-0 bg-white shadow-lg w-80 h-full p-4 z-50 hidden">
+    <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+    <div id="cart-items"></div>
+    <p class="mt-4 font-semibold">Total: $<span id="cart-total">0.00</span></p>
+    <button class="mt-2 bg-red-500 text-white px-4 py-1 rounded" onclick="toggleCart()">Close</button>
+    <button class="mt-2 bg-green-500 text-white px-4 py-1 rounded" onclick="checkoutPopup()">Checkout</button>
+  </aside>
+
+  <!-- Checkout Success Popup -->
+  <div id="checkout-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 hidden">
+    <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+      <h3 class="text-2xl font-bold mb-2 text-green-600">Thank you for your purchase!</h3>
+      <p class="mb-4">Your order has been placed successfully.</p>
+      <button onclick="closeCheckoutPopup()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">OK</button>
+    </div>
+  </div>
+
+  <script>
+    function checkoutPopup() {
+      document.getElementById('checkout-popup').classList.remove('hidden');
+    }
+    function closeCheckoutPopup() {
+      document.getElementById('checkout-popup').classList.add('hidden');
+      // Optionally, you can also close the cart here:
+      toggleCart();
+    }
+  </script>
+
+  <!-- Terms and Conditions Section -->
+  <section id="terms" class="p-4 mt-12 bg-gray-50 rounded-lg max-w-3xl mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-center">Terms and Conditions</h2>
+    <p class="mb-2">Welcome to BOSS BABY! By using our website, you agree to the following terms and conditions. Please read them carefully before making a purchase.</p>
+    <ul class="list-disc pl-6 mb-4">
+      <li>All products are subject to availability and may be withdrawn at any time.</li>
+      <li>Prices are subject to change without notice.</li>
+      <li>Personal information provided will be kept confidential and used only for order processing.</li>
+      <li>Returns and exchanges are accepted within 7 days of delivery, provided the product is unused and in original packaging.</li>
+      <li>For any queries, please contact us through the contact form.</li>
+    </ul>
+    <p class="text-sm text-gray-600">For more details, please contact our support team.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-center p-4 mt-12">
+    <p>&copy; 2025 BOSS BABY</p>
+    <div class="text-sm mt-2">
+      <a href="#" class="mr-2 text-blue-500 hover:underline">About</a>
+      <a href="#contact" class="mr-2 text-blue-500 hover:underline">Contact</a>
+      <a href="#terms" class="mr-2 text-blue-500 hover:underline">Terms</a>
+    
+    </div>
+  </footer>
+
+  <!-- Scroll to top button -->
+  <button onclick="scrollToTop()" class="fixed bottom-6 right-6 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 hidden" id="scrollTop">⬆</button>
+</body>
+
+</html>
