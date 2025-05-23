@@ -54,3 +54,11 @@ window.onload = () => {
     document.getElementById("cookieConsent").classList.remove("hidden");
   }
 };
+
+function goToPaymentPage() {
+  // Optionally, save cart to localStorage for payment page
+  if (window.localStorage && window.cart) {
+    localStorage.setItem('cart', JSON.stringify(window.cart));
+  }
+  window.location.href = 'payment.html';
+}

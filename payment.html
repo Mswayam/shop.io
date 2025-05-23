@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment & Delivery | BOSS BABY</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="icon" href="favicon.ico">
+  <script defer src="script.js"></script>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-yellow-100 to-blue-100 min-h-screen flex flex-col">
+  <nav class="flex items-center justify-between p-4 shadow-lg bg-gradient-to-r from-pink-400 via-yellow-300 to-blue-400 sticky top-0 z-40">
+    <div class="flex items-center space-x-2">
+      <img src="assets/LOGO.jpg" alt="BOSS Logo" class="h-10 w-10 object-contain">
+      <span class="text-xl font-bold">BOSS BABY</span>
+    </div>
+    <a href="index.html" class="text-blue-700 font-semibold">Home</a>
+  </nav>
+  <main class="flex-1 flex flex-col items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full mt-8">
+      <h2 class="text-2xl font-bold mb-4 text-center">Checkout: Delivery & Payment</h2>
+      <div id="order-summary" class="mb-6">
+        <!-- Order summary will be injected by script.js -->
+      </div>
+      <form id="checkout-form" class="space-y-6">
+        <!-- Delivery Details -->
+        <div>
+          <h3 class="font-semibold text-lg mb-2">Delivery Details</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <input type="text" name="fullname" placeholder="Full Name" class="border rounded p-2 w-full" required>
+            <input type="tel" name="phone" placeholder="Phone Number" class="border rounded p-2 w-full" required pattern="[0-9]{10,15}">
+            <input type="email" name="email" placeholder="Email Address" class="border rounded p-2 w-full md:col-span-2" required>
+            <input type="text" name="address" placeholder="Street Address" class="border rounded p-2 w-full md:col-span-2" required>
+            <input type="text" name="city" placeholder="City" class="border rounded p-2 w-full" required>
+            <input type="text" name="state" placeholder="State" class="border rounded p-2 w-full" required>
+            <input type="text" name="zip" placeholder="ZIP/Postal Code" class="border rounded p-2 w-full" required>
+            <input type="text" name="country" placeholder="Country" class="border rounded p-2 w-full" required>
+          </div>
+        </div>
+        <!-- Delivery Options -->
+        <div>
+          <h3 class="font-semibold text-lg mb-2">Delivery Options</h3>
+          <div class="flex flex-col gap-2">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="delivery-option" value="standard" checked required>
+              <span>Standard Delivery (3-7 days) – <span class="font-semibold">Free</span></span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="delivery-option" value="express">
+              <span>Express Delivery (1-2 days) – <span class="font-semibold">₹199</span></span>
+            </label>
+          </div>
+        </div>
+        <!-- Payment Method -->
+        <div>
+          <h3 class="font-semibold text-lg mb-2">Payment Method</h3>
+          <div class="flex flex-col gap-2">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment-method" value="credit" required>
+              <span>Credit Card</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment-method" value="debit">
+              <span>Debit Card</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment-method" value="upi">
+              <span>UPI (Google Pay, PhonePe, Paytm, etc.)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment-method" value="cod">
+              <span>Cash on Delivery</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment-method" value="netbanking">
+              <span>Net Banking</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="payment-method" value="wallet">
+              <span>Wallets (Paytm, Amazon Pay, etc.)</span>
+            </label>
+          </div>
+        </div>
+        <!-- Payment Details (conditional) -->
+        <div id="payment-details-section" class="hidden">
+          <h3 class="font-semibold text-lg mb-2">Payment Details</h3>
+          <div id="payment-details-fields"></div>
+        </div>
+        <button type="submit" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Place Order</button>
+      </form>
+    </div>
+    <div id="payment-success" class="hidden mt-8 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+      <strong>Thank you!</strong> Your order has been placed and a confirmation has been sent to your email.
+      <div class="mt-2 text-center">
+        <a href="index.html" class="text-blue-600 underline">Back to Home</a>
+      </div>
+    </div>
+  </main>
+  <footer class="bg-gray-100 text-center p-4 mt-12">
+    <p>&copy; 2025 BOSS BABY</p>
+  </footer>
+  <script>
+    // Show order summary from localStorage/cart
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.localStorage) {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        let total = 0;
+        let html = '<h3 class="font-semibold mb-2">Order Summary</h3>';
+        if (cart.length === 0) {
+          html += '<p>Your cart is empty.</p>';
+        } else {
+          html += '<ul class="mb-2">';
+          cart.forEach(item => {
+            html += `<li>${item.name} x ${item.quantity} - ₹${item.price * item.quantity}</li>`;
+            total += item.price * item.quantity;
+          });
+          html += '</ul>';
+          html += `<p class="font-bold">Total: ₹${total}</p>`;
+        }
+        document.getElementById('order-summary').innerHTML = html;
+      }
+    });
+    // Payment method dynamic fields
+    const paymentDetailsSection = document.getElementById('payment-details-section');
+    const paymentDetailsFields = document.getElementById('payment-details-fields');
+    document.querySelectorAll('input[name="payment-method"]').forEach(el => {
+      el.addEventListener('change', function() {
+        paymentDetailsSection.classList.add('hidden');
+        paymentDetailsFields.innerHTML = '';
+        if (this.value === 'credit' || this.value === 'debit') {
+          paymentDetailsSection.classList.remove('hidden');
+          paymentDetailsFields.innerHTML = `
+            <input type="text" name="cardholder" placeholder="Cardholder Name" class="border rounded p-2 w-full mb-2" required>
+            <input type="text" name="cardnumber" placeholder="Card Number" maxlength="19" class="border rounded p-2 w-full mb-2" required pattern="[0-9 ]{16,19}">
+            <div class="flex gap-2 mb-2">
+              <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" class="border rounded p-2 w-1/2" required pattern="(0[1-9]|1[0-2])\/\d{2}">
+              <input type="text" name="cvv" placeholder="CVV" maxlength="4" class="border rounded p-2 w-1/2" required pattern="\d{3,4}">
+            </div>
+          `;
+        } else if (this.value === 'upi') {
+          paymentDetailsSection.classList.remove('hidden');
+          paymentDetailsFields.innerHTML = `
+            <input type="text" name="upiid" placeholder="UPI ID (e.g. name@bank)" class="border rounded p-2 w-full mb-2" required>
+          `;
+        } else if (this.value === 'netbanking') {
+          paymentDetailsSection.classList.remove('hidden');
+          paymentDetailsFields.innerHTML = `
+            <select name="bank" class="border rounded p-2 w-full mb-2" required>
+              <option value="" disabled selected>Select Bank</option>
+              <option value="sbi">SBI</option>
+              <option value="hdfc">HDFC</option>
+              <option value="icici">ICICI</option>
+              <option value="axis">Axis</option>
+              <option value="kotak">Kotak</option>
+              <option value="other">Other</option>
+            </select>
+            <input type="text" name="account" placeholder="Account Holder Name" class="border rounded p-2 w-full mb-2" required>
+          `;
+        } else if (this.value === 'wallet') {
+          paymentDetailsSection.classList.remove('hidden');
+          paymentDetailsFields.innerHTML = `
+            <select name="wallet" class="border rounded p-2 w-full mb-2" required>
+              <option value="" disabled selected>Select Wallet</option>
+              <option value="paytm">Paytm</option>
+              <option value="amazonpay">Amazon Pay</option>
+              <option value="phonepe">PhonePe</option>
+              <option value="mobikwik">Mobikwik</option>
+              <option value="other">Other</option>
+            </select>
+            <input type="text" name="walletid" placeholder="Wallet Mobile/ID" class="border rounded p-2 w-full mb-2" required>
+          `;
+        }
+      });
+    });
+    // Form submission
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('checkout-form').classList.add('hidden');
+      document.getElementById('payment-success').classList.remove('hidden');
+      // Optionally clear cart
+      if (window.localStorage) localStorage.removeItem('cart');
+    });
+  </script>
+</body>
+</html>
